@@ -1,5 +1,9 @@
 models:
   - name: dim_listing_cleansed
+    data_tests:
+      - minimum_row_count:
+          arguments:
+            min_row_count: 100000000000
     columns:
       - name: listing_id
         data_tests:
@@ -21,3 +25,24 @@ models:
                         'Private room',
                         'Shared room',
                         'Hotel room']
+      - name: minimum_nights
+        data_type: integer
+        data_tests:
+          - positive_values
+
+
+  - name: dim_hosts_cleansed
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: host_id
+        data_type: integer
+      - name: host_name
+        data_type: string
+      - name: is_superhost
+        data_type: string
+      - name: updated_at
+        data_type: timestamp
+      - name: created_at
+        data_type: timestamp 
